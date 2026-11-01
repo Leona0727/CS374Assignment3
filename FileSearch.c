@@ -83,7 +83,7 @@ int createDirectory ( char directory[]){
     for (int i = 0; i < 100000; i++){
          random_number = rand() % 100000;
 
-         sprintf (directory, "kanetar_movies.%d", random_number);
+         sprintf (directory, "kanetar.movies.%d", random_number);
 
          if (mkdir ( directory, 0750) == 0){
             created = 1;
