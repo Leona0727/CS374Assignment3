@@ -42,6 +42,7 @@ int findFile ( int choice, char filename[]) {
 void selectFile(char filename[]) {
     int choice;
     int found = 0;
+     struct stat info;
 
     while (!found){
         printf("\nWhich file you want to process?\n");
@@ -60,7 +61,7 @@ void selectFile(char filename[]) {
             }
         }
         else if ( choice == 3) {
-            struct stat info;
+            
 
             printf("Enter the complete file name: ");
             scanf ("%255s", filename);
@@ -71,9 +72,9 @@ void selectFile(char filename[]) {
         } else {
             printf ("The file %s was not found. Try again\n", filename);
         }
-    }
     else {
         printf( "You entered an incorrect choice. Try again.\n");
+    }
     }
 }
 
@@ -84,7 +85,7 @@ int createDirectory ( char directory[]){
     for (int i = 0; i < 100000; i++){
          random_number = rand() % 100000;
 
-         sprintf (directory, "movies.%d", random_number);
+         sprintf (directory, "kanetar_movies.%d", random_number);
 
          if (mkdir ( directory, 0750) == 0){
             created = 1;
@@ -118,7 +119,7 @@ void processFile(char fileName[], char directory[]) {
         int year;
         double rating;
 
-        if (sscanf (line, "%499[^,],%d,%199[^,],%lf", title, &year, languages, &rating) == 4) {
+        if (sscanf (line, "%99[^,],%d,%99[^,],%lf", title, &year, languages, &rating) == 4) {
              char output_name[300];
             sprintf ( output_name, "%s/%d.txt", directory, year);
             FILE *output = fopen ( output_name, "a");
@@ -130,7 +131,7 @@ void processFile(char fileName[], char directory[]) {
             }
         }
     }
-    fclose (file);
+    fclose (input);
 }
 
 int main(void) {
