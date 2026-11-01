@@ -61,16 +61,14 @@ void selectFile(char filename[]) {
             }
         }
         else if ( choice == 3) {
-            
-
             printf("Enter the complete file name: ");
             scanf ("%255s", filename);
-        }
 
-        if ( stat ( filename, &info) == 0 && S_ISREG( info.st_mode)) {
-            found = 1;
-        } else {
-            printf ("The file %s was not found. Try again\n", filename);
+             if ( stat ( filename, &info) == 0 && S_ISREG( info.st_mode)) {
+                 found = 1;
+             } else {
+                 printf ("The file %s was not found. Try again\n", filename);
+             }
         }
     else {
         printf( "You entered an incorrect choice. Try again.\n");
